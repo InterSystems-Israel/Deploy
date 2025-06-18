@@ -18,7 +18,7 @@ jobs:
         shell: cmd
         run: |
           echo Cloning repo to known path...
-          git clone --branch DEV https://github.com/ariglikman/Deploy.git "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo"
+          git clone --branch DEV https://github.com/InterSystems-Israel/Deploy.git "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo"
 
 
       - name: Compile Hello.cls into DEV IRIS
