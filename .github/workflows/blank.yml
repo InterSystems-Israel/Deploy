@@ -1,0 +1,17 @@
+name: Deploy to DEV
+
+on:
+  workflow_dispatch:   #Manual trigger only
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Compile Hello.cls into PROD IRIS
+        run: |
+          echo "Running local IRIS compile..."
+         C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\TEST_HSHC\bin /console=cn_ap:TEST[CICD] C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\myscript.scr
