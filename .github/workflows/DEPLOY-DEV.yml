@@ -8,10 +8,20 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Clean local source folder
+        shell: cmd
+        run: |
+          echo Removing old repo copy...
+          rmdir /S /Q "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo"
+
+      - name: Clone latest DEV branch to local IRIS-visible path
+        shell: cmd
+        run: |
+          echo Cloning repo to known path...
+          git clone --branch DEV https://github.com/ariglikman/Deploy.git "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo"
+
 
       - name: Compile Hello.cls into DEV IRIS
         run: |
           echo "Running local IRIS compile..."
-         C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\TEST_HSHC\bin /console=cn_ap:TEST[CICD] C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\myscript.scr
+          C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\TEST_HSHC\bin\iristerm.exe /console=cn_ap:TEST[CICD] C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\myscript.scr
