@@ -1,0 +1,27 @@
+name: Deploy to PROD
+
+on:
+  workflow_dispatch:   #Manual trigger only
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Clean local source folder
+        shell: cmd
+        run: |
+          echo Removing old repo copy...
+          rmdir /S /Q "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo-PROD"
+
+      - name: Clone latest DEV branch to local IRIS-visible path
+        shell: cmd
+        run: |
+          echo Cloning repo to known path...
+          git clone --branch PROD https://github.com/InterSystems-Israel/Deploy.git "C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\CI-CD_Demo-PROD"
+
+
+      - name: Compile Hello.cls into PROD IRIS
+        run: |
+          echo "Running local IRIS compile..."
+          C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\PROD_HSHC\bin\iristerm.exe /console=cn_ap:PROD[CICD] C:\Users\aglikman\Documents\MyProjects\Soraski-Ichilov\CI-CD\myscriptPROD.scr
